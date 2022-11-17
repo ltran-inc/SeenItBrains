@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
             throw new EtAuthException("Invalid email format");
         Integer count = userRepository.getCountByEmail(email);
         if (count > 0)
-            throw new EtAuthException("Email already in use");
+            throw new EtAuthException("Email already in use !!!");
         Integer userId = userRepository.create(firstName, lastName, email, password);
         return userRepository.findById(userId);
     }
