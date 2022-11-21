@@ -20,8 +20,6 @@ public class SocialPostServiceImpl implements SocialPostService {
 
     @Autowired
     SocialPostRepository2Impl socialPostRepository;
-
-
     @Autowired
     UserService userService;
 
