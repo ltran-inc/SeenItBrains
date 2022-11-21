@@ -3,7 +3,6 @@ com/seenItBrains/SeenItBrains/services/TransactionService.class
 com/seenItBrains/SeenItBrains/domain/Transaction.class
 com/seenItBrains/SeenItBrains/SeenItBrainsApplication.class
 com/seenItBrains/SeenItBrains/domain/Category.class
-com/seenItBrains/SeenItBrains/domain/User.class
 com/seenItBrains/SeenItBrains/services/UserServiceImpl.class
 com/seenItBrains/SeenItBrains/filters/AuthFilter.class
 com/seenItBrains/SeenItBrains/exceptions/EtAuthException.class
@@ -15,7 +14,6 @@ com/seenItBrains/SeenItBrains/services/TransactionServiceImpl.class
 com/seenItBrains/SeenItBrains/services/CategoryService.class
 com/seenItBrains/SeenItBrains/resources/UserResource.class
 com/seenItBrains/SeenItBrains/repositories/UserRepository.class
-com/seenItBrains/SeenItBrains/repositories/UserRepositoryImpl.class
 com/seenItBrains/SeenItBrains/exceptions/EtResourceNotFoundException.class
 com/seenItBrains/SeenItBrains/exceptions/EtBadRequestException.class
 com/seenItBrains/SeenItBrains/services/UserService.class
