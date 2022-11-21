@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-      - jpa
+      - origin/jpa
 jobs:
   build:
     name: Build Archive
