@@ -1,7 +1,7 @@
 package com.seenItBrains.SeenItBrains.resources;
 
 import com.seenItBrains.SeenItBrains.Constants;
-import com.seenItBrains.SeenItBrains.domain.User;
+import com.seenItBrains.SeenItBrains.model.User;
 import com.seenItBrains.SeenItBrains.services.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -33,7 +33,8 @@ public class UserResource {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, String>> registerUser(@RequestBody Map<String, Object> userMap) {
+    public ResponseEntity<Map<String, String>> registerUser(@RequestBody Map<String, Object> userMap) throws Exception {
+
         String firstName = (String) userMap.get("firstName");
         String lastName = (String) userMap.get("lastName");
         String email = (String) userMap.get("email");
@@ -41,6 +42,7 @@ public class UserResource {
         User user = userService.registerUser(firstName, lastName, email, password);
         return new ResponseEntity<>(generateJWTToken(user), HttpStatus.OK);
     }
+
 
     private Map<String, String> generateJWTToken(User user) {
         long timestamp = System.currentTimeMillis();

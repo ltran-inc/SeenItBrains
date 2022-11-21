@@ -1,15 +1,22 @@
 package com.seenItBrains.SeenItBrains.repositories;
 
-import com.seenItBrains.SeenItBrains.domain.User;
 import com.seenItBrains.SeenItBrains.exceptions.EtAuthException;
+import com.seenItBrains.SeenItBrains.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface UserRepository {
+@Repository
+@Transactional
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Integer create(String firstName, String lastNAme, String email, String password) throws EtAuthException;
+    @Query("SELECT u FROM User u where u.email = ?1")
+    User findByEmail(String email) throws EtAuthException;
 
-    User findByEmailAndPassword(String email, String password) throws EtAuthException;
 
+    @Query("SELECT count(u) FROM User u where u.email = ?1")
     Integer getCountByEmail(String email);
 
-    User findById(Integer userId);
+
 }

@@ -4,19 +4,28 @@
 /*create user seenIt with password 'password';*/
 /*create database postgresleotest with template=template0
  * owner=seenitpostgres;*/
-\connect postgresleotest;
+
+
+\connect seenitdb;
+--\connect postgresleotest;
 
 ALTER TABLE IF EXISTS et_categories DROP CONSTRAINT cat_users_fk;
 ALTER TABLE IF EXISTS et_transactions DROP CONSTRAINT trans_cat_fk;
 ALTER TABLE IF EXISTS et_transactions DROP CONSTRAINT trans_users_fk;
+ALTER TABLE IF EXISTS et_social_post DROP CONSTRAINT post_users_fk;
 
-DROP TABLE IF EXISTS et_users, et_categories, et_transactions;
+DROP TABLE IF EXISTS et_users, et_categories, et_transactions, et_social_post;
+
 DROP SEQUENCE IF EXISTS et_users_seq;
+DROP SEQUENCE IF EXISTS et_social_post_seq;
 DROP SEQUENCE IF EXISTS et_transactions_seq;
 DROP SEQUENCE IF EXISTS et_categories_seq;
 
-alter default privileges grant all on tables to seenitpostgres;
-alter default privileges grant all on sequences to seenitpostgres;
+alter default privileges grant all on tables to seenIt;
+alter default privileges grant all on sequences to seenIt;
+
+--alter default privileges grant all on tables to seenitpostgres;
+--alter default privileges grant all on sequences to seenitpostgres;
 
 create table et_users(
 user_id integer primary key not null,
@@ -51,6 +60,20 @@ foreign key (category_id) references et_categories(category_id);
 alter table et_transactions add constraint trans_users_fk
 foreign key (user_id) references et_users(user_id);
 
+create table et_social_post(
+social_post_id integer primary key not null,
+user_id integer not null,
+content varchar(250) not null,
+image_id varchar(50),
+post_timestamp timestamp not null
+);
+
+alter table et_social_post add constraint post_users_fk
+foreign key (user_id) references et_users(user_id);
+--alter table et_social_post add constraint post_image_fk
+--foreign key (image_id) references files(id);
+
 create sequence et_users_seq increment 1 start 1;
 create sequence et_categories_seq increment 1 start 1;
 create sequence et_transactions_seq increment 1 start 1000;
+create sequence et_social_post_seq increment 1 start 1;

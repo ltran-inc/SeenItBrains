@@ -1,26 +1,46 @@
-package com.seenItBrains.SeenItBrains.domain;
+package com.seenItBrains.SeenItBrains.model;
 
+import com.seenItBrains.SeenItBrains.exceptions.EtAuthException;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
-    private Integer userId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
+
     private String password;
 
-    public User(Integer userId, String firstName, String lastName, String email, String password) {
-        this.userId = userId;
+
+
+    public User() {
+
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
